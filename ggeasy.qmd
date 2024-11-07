@@ -1,0 +1,108 @@
+```{r}
+library(ggplot2)
+library(dplyr)
+library(tidyr)
+
+library(ggeasy)
+```
+
+a) Create a diverging stacked bar chart to display the data. 
+```{r, fig.height=10, fig.width=16}
+data(mtcars)
+
+head(mtcars)
+```
+
+```{R}
+mtcars$am <- factor(mtcars$am, labels = c("Automatic", "Manual"))
+
+ggplot(mtcars, aes(x = mpg, fill = am)) +
+    geom_density(alpha = 0.5) +
+    labs(title = "Distribution of Fuel Efficiency by Transmission Type",
+         x = "mpg",
+         fill = "Transmission Type") +
+    theme_minimal()
+```
+
+
+
+Legend Operations:
+
+a) easy_move_legend() -> theme(legend.position = "bottom")
+b) *easy_rotate_legend() -> guides(fill = guide_legend(ncol = 1))*
+c) easy_remove_legend_title -> theme(legend.title = element_blank())
+d) easy_remove_legend -> theme(legend.position = "none")
+
+```{R}
+ggplot(mtcars, aes(x = mpg, fill = am)) +
+  geom_density(alpha = 0.5) +
+  labs(title = "Distribution of Fuel Efficiency by Transmission Type",
+       x = "mpg",
+       fill = "Transmission Type") +
+  theme_minimal()+
+  theme(legend.position = "bottom")
+```
+
+
+
+Change text size:
+
+a) easy_x_axis_labels_size(20) -> theme(axis.text.x = element_text(size = 20))
+b) easy_plot_title_size(20) -> theme(plot.title = element_text(size = 20))
+c) easy_legend_size(20) -> theme(legend.title = element_text(size = 20))
+d) easy_legend_text_size(20) -> theme(legend.text = element_text(size = 20))
+e) easy_title_bold() -> theme(plot.title = element_text(face = "bold"))
+
+```{R}
+ggplot(mtcars, aes(x = mpg, fill = am)) +
+  geom_density(alpha = 0.5) +
+  labs(title = "Distribution of Fuel Efficiency by Transmission Type",
+       x = "mpg",
+       fill = "Transmission Type") +
+  theme_minimal()
+```
+
+
+
+Rotate labels:
+
+a) *easy_rotate_labels()* -> 
+  theme(
+      axis.text.x = element_text(angle = 90),
+      axis.text.y = element_text(angle = 90)
+  )
+
+```{R}
+ggplot(mtcars, aes(x = mpg, fill = am)) +
+  geom_density(alpha = 0.5) +
+  labs(title = "Distribution of Fuel Efficiency by Transmission Type",
+       x = "mpg",
+       fill = "Transmission Type") +
+  theme_minimal()
+```
+
+
+
+Remove axis/gridlines:
+
+a) easy_remove_x_axis() ->
+  theme(
+      axis.title.x = element_blank(),
+      axis.text.x = element_blank(),
+      axis.ticks.x = element_blank()
+  )
+b) easy_remove_x_axis(what = "ticks")
+c) easy_remove_gridlines() ->
+  theme(
+      panel.grid.major.x = element_blank(),
+      panel.grid.minor.x = element_blank()
+  )
+
+```{R}
+ggplot(mtcars, aes(x = mpg, fill = am)) +
+  geom_density(alpha = 0.5) +
+  labs(title = "Distribution of Fuel Efficiency by Transmission Type",
+       x = "mpg",
+       fill = "Transmission Type") +
+  theme_minimal()
+```
